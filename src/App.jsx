@@ -1,20 +1,24 @@
 import { Slider } from "./Slider/index";
 
-export const App = () => {
-  return (
-    <Slider
-      settings={{
-        width: 500,
-        height: 500,
-        start: 0,
-        isTouch: true,
-        isDragg: true,
-        text: {
-          forward: ">",
-          back: "<",
-        },
-      }}
-      images={["/1.jpg", "/2.jpg"]}
-    />
+const settings = {
+  width: 600,
+  height: 600,
+  start: 0,
+  isTouch: true,
+  isDragg: true,
+  content: {
+    forward: ">",
+    back: "<",
+  },
+};
+
+const images = [];
+
+for (let count = 1; count < 20; count++)
+  images.push(
+    `https://picsum.photos/${settings.width}/${settings.height}?random=${count}`,
   );
+
+export const App = () => {
+  return <Slider settings={settings} images={images} />;
 };

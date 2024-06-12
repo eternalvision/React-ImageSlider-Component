@@ -26,7 +26,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $black;
+  background: $bg;
 }
 
 .SliderContainer {
@@ -35,7 +35,7 @@ body {
   overflow: hidden;
   display: flex;
   border-radius: 10px;
-  box-shadow: 0 8px 8px $bg;
+  box-shadow: 0px 8px 50px $bg;
 }
 
 .ImageContainer {

@@ -3,7 +3,7 @@ import { getHandleStart, getHandleEnd, getHandleMove } from "./handlers";
 import "./style.scss";
 
 export const Slider = memo(({ settings, images }) => {
-  const { start, width, height, isTouch, isDragg, text } = settings;
+  const { start, width, height, isTouch, isDragg, content } = settings;
   const [currentImg, setCurrentImg] = useState(start);
   const [touchStart, setTouchStart] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -78,8 +78,8 @@ export const Slider = memo(({ settings, images }) => {
         ))}
       </li>
       <li className="Buttons">
-        <button onClick={() => updateImg(-1)}>{text.back}</button>
-        <button onClick={() => updateImg(+1)}>{text.forward}</button>
+        <button onClick={() => updateImg(-1)}>{content.back}</button>
+        <button onClick={() => updateImg(+1)}>{content.forward}</button>
       </li>
     </ul>
   );
