@@ -3,7 +3,17 @@ import { getHandleStart, getHandleEnd, getHandleMove } from "./handlers";
 import "./style.scss";
 
 export const Slider = memo(({ settings, images }) => {
-  const { start, width, height, isTouch, isDragg, content } = settings;
+  const {
+    start,
+    width,
+    height,
+    isTouch,
+    isDragg,
+    isCounter,
+    content,
+    className,
+    style,
+  } = settings;
   const [currentImg, setCurrentImg] = useState(start);
   const [touchStart, setTouchStart] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -64,24 +74,46 @@ export const Slider = memo(({ settings, images }) => {
       : {};
 
   return (
-    <ul
-      className="SliderContainer"
-      style={{ height: `${height}px`, width: `${width}px` }}
-      {...eventHandlers}>
-      <li
-        className="ImageContainer"
-        style={{
-          transform: `translateX(-${currentImg * width}px)`,
-        }}>
-        {images.map((src, index) => (
-          <img width={width} key={index} src={src} alt={`Image ${index + 1}`} />
-        ))}
-      </li>
-      <li className="Buttons">
-        <button onClick={() => updateImg(-1)}>{content.back}</button>
-        <button onClick={() => updateImg(+1)}>{content.forward}</button>
-      </li>
-    </ul>
+    <>
+      <ul
+        className={`${className.slider || ""} SliderContainer`}
+        style={{ height: `${height}px`, width: `${width}px`, ...style.slider }}
+        {...eventHandlers}>
+        <li
+          className="ImageContainer"
+          style={{
+            transform: `translateX(-${currentImg * width}px)`,
+          }}>
+          {images.map((src, index) => (
+            <img
+              width={width}
+              key={index}
+              src={src}
+              alt={`Image ${index + 1}`}
+            />
+          ))}
+        </li>
+        <li className="Buttons">
+          <button
+            className={className.buttons.back}
+            onClick={() => updateImg(-1)}>
+            {content.buttons.back}
+          </button>
+          <button
+            className={className.buttons.forward}
+            onClick={() => updateImg(+1)}>
+            {content.buttons.forward}
+          </button>
+        </li>
+      </ul>
+      {isCounter && (
+        <div className="ImageCount">
+          <span>
+            {currentImg + 1} / {images.length}
+          </span>
+        </div>
+      )}
+    </>
   );
 });
 

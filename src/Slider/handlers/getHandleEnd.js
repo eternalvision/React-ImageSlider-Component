@@ -1,3 +1,1 @@
-export const getHandleEnd = (setIsDragging) => () => {
-  setIsDragging(false);
-};
+export const getHandleEnd = (setIsDragging) => () => setIsDragging(false);
